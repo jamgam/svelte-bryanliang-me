@@ -14,11 +14,12 @@
   let rank = -1;
   let id = null;
   let submitting = false;
+  const currentScore = $score;
 
   onMount(async () => {
     await getScores()
     if (getRank() > 0) {
-      const entry = await uploadScore({score: $score, duration: $time.toFixed(2)})
+      const entry = await uploadScore({score: currentScore, duration: $time.toFixed(2)})
       id = entry.id
       await getScores()
     }
@@ -70,7 +71,7 @@
   function getRank() {
     rank = highscores.length < 10 ? highscores.length + 1 : -1
     for (let i = highscores.length - 1; i >= 0; i--) {
-      if(highscores[i]?.score < $score) {
+      if(highscores[i]?.score < currentScore) {
         rank = i + 1
       }
     }
@@ -188,12 +189,13 @@
   class="container" 
   in:fly={{ y: -200, duration: 500, easing: quartInOut }}
   out:fly={{ y: 200, duration: 500, easing: quartInOut }}
-> 
-  <div class="leaderboard" >
+>
+  <div 
+    class="leaderboard" >
     {#if rank > 0}
       <p>You ranked: #{rank}</p>
     {:else}
-      <p>You scored: {$score} pt{$score === 1 ? '' : 's'} {$score === 0 ? ':(' : ''}</p>
+      <p>You scored: {currentScore} pt{currentScore === 1 ? '' : 's'} {currentScore === 0 ? ':(' : ''}</p>
     {/if}
     {#if highscores}
       <div class="entry header">

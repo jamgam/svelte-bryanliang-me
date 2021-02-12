@@ -1,6 +1,5 @@
 <script>
   import { onMount, onDestroy, setContext } from 'svelte';
-  import { v4 as uuidv4 } from 'uuid';
   import { randomInt, randomNum } from '../helpers'
   import { GAME_VALUES } from '../constants';
   import Character from './Character.svelte';
@@ -140,7 +139,6 @@
 	}
 
   function generateEnemy() {
-    const uuid = uuidv4();
     const { ENEMY_MAX_SIZE } = GAME_VALUES;
     const spawnLocations = [
       {x: randomInt(0, $width), y: -ENEMY_MAX_SIZE},
@@ -150,7 +148,7 @@
     ];
     const spawnLocation = spawnLocations[randomInt(0, 4)];
     enemies.set([...$enemies, {
-      id: uuid,
+      id: {},
       x: spawnLocation.x,
       y: spawnLocation.y,
       target: $isAboutMeVisible || !$isAlive ? [randomInt(0, $width), randomInt(0, $height)] : $player.position,
@@ -193,17 +191,6 @@
   function endGame () {
     clearInterval(spawnInterval)
     spawnrate = INITIAL_SPAWN_RATE
-  }
-
-  function createExplosion({size, position, velocity = [0, 0]}) {
-    for (let i = 0; i < size; i++) {
-      particles[particles.length] = {
-        id: uuidv4(), 
-        x: position[0] + randomNum(-(size*1.2), size*1.2), 
-        y: position[1] + randomNum(-(size*1.2), size*1.2),
-        velocity: vec2.scaleAndAdd([], [randomNum(-100, 100), randomNum(-100, 100)], velocity, 20),
-      }
-    }
   }
 
 </script>
