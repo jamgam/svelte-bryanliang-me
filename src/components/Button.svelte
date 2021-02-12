@@ -13,6 +13,10 @@
     color: var(--light-blue);
     font-size: calc(5px + 1vmin);
     pointer-events: all;
+    -webkit-user-select: none;         
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
   }
 
   .small {

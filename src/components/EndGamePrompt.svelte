@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { fly } from 'svelte/transition'
   import { quartInOut } from 'svelte/easing'
   import Button from './Button.svelte'
@@ -24,6 +24,10 @@
     }
   })
 
+  onDestroy(() => {
+    handleOnSubmit()
+  })
+
   async function getScores() {
     try {
       highscores = await getHighscores();
@@ -46,7 +50,6 @@
   }
 
   async function handleOnSubmit() {
-
     if (value && id) {
       submitting = true
       await updateUsername({id, username: value})
@@ -186,9 +189,7 @@
   in:fly={{ y: -200, duration: 500, easing: quartInOut }}
   out:fly={{ y: 200, duration: 500, easing: quartInOut }}
 > 
-  <div
-    class="leaderboard"
-  >
+  <div class="leaderboard" >
     {#if rank > 0}
       <p>You ranked: #{rank}</p>
     {:else}
