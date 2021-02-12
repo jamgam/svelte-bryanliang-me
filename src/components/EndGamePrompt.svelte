@@ -217,7 +217,7 @@
           <span class="username col">submitting<span class="dots"><span>.</span><span>.</span><span>.</span></span></span>
         {:else if i + 1 === rank}
           <form class="username" on:submit|preventDefault={handleOnSubmit}>
-            <input bind:value use:init type="text" placeholder={GAME_VALUES.USERNAME_PLACEHOLDER}/>
+            <input bind:value use:init maxlength="12" type="text" placeholder={GAME_VALUES.USERNAME_PLACEHOLDER}/>
           </form>
         {:else}
           <span class="username col">{username}</span>
