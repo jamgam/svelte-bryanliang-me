@@ -1,5 +1,5 @@
 <script>
-  import { shells } from '../game.js'
+  import { shells } from '../game'
   import { fly } from 'svelte/transition'
   import { quartInOut } from 'svelte/easing'
 </script>

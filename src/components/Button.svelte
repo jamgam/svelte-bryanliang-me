@@ -12,6 +12,7 @@
     background-color: transparent;
     color: var(--light-blue);
     font-size: calc(5px + 1vmin);
+    pointer-events: all;
   }
 
   .small {
@@ -25,6 +26,7 @@
   button:hover {
     border-width: 4px;
     margin: -2px;
+    cursor: pointer;
   }
 </style>
 

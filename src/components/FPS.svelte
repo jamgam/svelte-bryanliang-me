@@ -1,6 +1,6 @@
 <script>
 	import Text from './Text.svelte';
-	import { shells, score, renderable } from '../game.js';
+	import { shells, score, renderable } from '../game';
 	
 	let text = '';
 

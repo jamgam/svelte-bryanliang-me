@@ -221,7 +221,7 @@
   <EndGamePrompt on:click={startGame} />
 {/if}
 {#if !$isAboutMeVisible}
-  <ShotgunDisplay on:click={startGame} />
+  <ShotgunDisplay />
 {/if}
 
 <canvas

@@ -7,7 +7,7 @@
   import { quartInOut } from 'svelte/easing';
   import { onMount } from 'svelte';
 
-  import { isAboutMeVisible } from '../store.js'
+  import { isAboutMeVisible } from '../store'
   onMount(() => {
     isAboutMeVisible.set(true);
   })
@@ -62,6 +62,7 @@
     font-size: calc(10px + 4vmin);
     padding: 12vw 12vh;
     text-align: left;
+    pointer-events: none;
   }
   .App-main span {
     margin: 1.5rem 0rem;

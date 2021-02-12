@@ -1,9 +1,9 @@
 <script>
-	import { width, height, renderable } from '../game.js';
+	import { width, height, renderable } from '../game';
 	import vec2 from 'gl-vec2';
   import { onDestroy } from 'svelte';
-  import { GAME_VALUES } from '../constants.js';
-import { isOutOfBounds } from '../helpers.js';
+  import { GAME_VALUES } from '../constants';
+import { isOutOfBounds } from '../helpers';
   
   const { BASE_BULLET_SPEED } = GAME_VALUES
 

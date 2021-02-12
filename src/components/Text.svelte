@@ -1,5 +1,5 @@
 <script>
-	import { renderable } from '../game.js';
+	import { renderable } from '../game';
 	
 	export let color = 'hsl(0, 0%, 100%)';
 	export let align = 'center';

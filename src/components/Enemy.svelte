@@ -1,5 +1,5 @@
 <script>
-	import { time, enemies, score, player, isAlive, particles, bullets, renderable } from '../game.js';
+	import { time, enemies, score, player, isAlive, particles, bullets, renderable } from '../game';
   import { randomInt, randomNum, isOutOfBounds } from '../helpers'
   import { GAME_VALUES } from '../constants'
 	import vec2 from 'gl-vec2';
