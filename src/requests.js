@@ -3,7 +3,7 @@ import { GAME_VALUES } from './constants'
 
 const graphQl = async (type, query) => {
   const url = import.meta.env.SNOWPACK_PUBLIC_API_URL
-  const response = await fetch(url + '', {
+  const response = await fetch(url + '/graphQl', {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
