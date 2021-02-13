@@ -12,14 +12,17 @@ const graphQl = async (type, query) => {
       verificationHash: hash({query: `${type} ${query}`, key: import.meta.env.SNOWPACK_PUBLIC_SECRET_KEY })
     })
   })
-  return response.json()
+  if (response.ok) {
+    return response.json()
+  }
+  throw response
 }
 
 export const uploadScore = async ({score, duration, username = GAME_VALUES.USERNAME_PLACEHOLDER}) => {
   const type = 'mutation'
   const query = `
     {
-      addScore(score: "${score}", username: "${username}", duration: "${duration}") {
+      createScore(score: ${score}, username: "${username}", duration: ${duration}) {
         id
         score
         username
@@ -29,27 +32,28 @@ export const uploadScore = async ({score, duration, username = GAME_VALUES.USERN
     }
   `
   const res = await graphQl(type, query)
-  return res?.data?.addScore
+  return res?.data?.createScore
 }
 
 export const updateUsername = async ({id, username}) => {
   const type = 'mutation'
   const query = `
   {
-    updateUsername(id: "${id}", username: "${username}") {
+    updateScore(id: ${id}, username: "${username}") {
       username
       score
     }
   }
   `
-  return graphQl(type, query)
+  const res = await graphQl(type, query)
+  return res?.data?.uploadScore
 }
 
 export const getHighscores = async () => {
   const type = 'query'
   const query = `
     {
-      highscores {
+      getHighscores {
         id
         score
         username
@@ -59,6 +63,6 @@ export const getHighscores = async () => {
     }
   `
   const res = await graphQl(type, query)
-  return res?.data?.highscores
+  return res?.data?.getHighscores
 }
 

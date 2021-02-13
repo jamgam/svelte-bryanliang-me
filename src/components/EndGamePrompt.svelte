@@ -18,7 +18,7 @@
 
   onMount(async () => {
     await getScores()
-    if (getRank() > 0) {
+    if (!error && getRank() > 0) {
       const entry = await uploadScore({score: currentScore, duration: $time.toFixed(2)})
       id = entry.id
       await getScores()
@@ -32,10 +32,10 @@
   async function getScores() {
     try {
       highscores = await getHighscores();
+      return highscores;
     } catch(e) {
       error = e;
     }
-    return highscores;
   }
 
   function timeout(ms) {
@@ -205,12 +205,9 @@
       </div>
       {#each fill(highscores) as {id, username, score}, i}
       <div 
-        class={
-          i + 1 === rank 
-          ? submitting 
-            ? "highlight entry submitting" 
-            : "highlight entry" 
-          : "entry "}
+        class:highlight={i+1===rank}
+        class:submitting={i+1===rank && submitting}
+        class="entry"
       >
         <span class="col">{i+1}</span>
         {#if (i + 1 === rank) && submitting}
