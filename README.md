@@ -24,7 +24,7 @@ Your app is ready to be deployed!
 
 ## About
 
-First svelte project! Attempted to clone https://bryanliang.me (react)
+First svelte project! Check it out: https://bryanliang.me
 
 
 
